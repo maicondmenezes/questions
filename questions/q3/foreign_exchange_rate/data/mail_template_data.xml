@@ -1,0 +1,99 @@
+<?xml version="1.0"?>
+<odoo>
+  <record id="mail_template_attendance_rating" model="mail.template">
+    <field name="name">Avaliação de Atendimento</field>
+    <field name="email_from">{{ (object.rating_get_rated_partner_id().email or  user.email_formatted or '') }}</field>
+    <field name="subject">{{ object.name }}: Solicitação de Avalaição do Atendimento</field>
+    <field name="model_id" ref="kami_sm.model_kami_sm_attendance"/>
+    <field name="partner_to" >{{ object.rating_get_partner_id().id }}</field>
+    <field name="auto_delete" eval="True"/>
+    <field name="body_html" type="html">
+      <div>
+        <t t-set="access_token" t-value="object.rating_get_access_token()" data-oe-t-inline="true"></t>
+        <t t-set="partner" t-value="object.rating_get_partner_id()" data-oe-t-inline="true"></t>
+        <table style="width:100%; margin:0px auto;" width="590" cellspacing="0" cellpadding="0" border="0">
+        <tbody>
+            <tr><td style="font-size: 13px;" valign="top">
+                <t t-if="partner.name" data-oe-t-group="0" data-oe-t-selectable="true" data-oe-t-group-active="true" data-oe-t-inline="true">
+                    Olá <t t-out="partner.name or ''" data-oe-t-inline="true" contenteditable="false">Brandon Freeman</t>,<br/><br/>
+                </t>
+                <t t-else="" data-oe-t-selectable="true" data-oe-t-group="0" data-oe-t-inline="true">
+                    Olá,<br/><br/>
+                </t>
+                Reserve um momento para avaliar nossos serviços relacionados ao atendimento "<strong t-out="object.name or ''" contenteditable="false">Atendimento</strong>"
+                <t t-if="object.rating_get_rated_partner_id().name" data-oe-t-group="1" data-oe-t-selectable="true" data-oe-t-group-active="true" data-oe-t-inline="true">
+                  atribuído a <strong t-out="object.rating_get_rated_partner_id().name or ''" contenteditable="false">Mitchell Admin</strong>.<br/>
+                </t>
+                <t t-else="" data-oe-t-selectable="true" data-oe-t-group="1" data-oe-t-inline="true">
+                    .<br/>
+                </t>
+            </td></tr>
+            <tr><td style="text-align: center;">
+                <table summary="o_mail_notification" style="width:100%; margin: 32px 0px 32px 0px;" width="590" cellspacing="0" cellpadding="0" border="0">
+                    <tbody><tr><td style="font-size: 13px;">
+                        <strong>Conte-nos como você se sente sobre o nosso serviço</strong><br/>
+                        <span style="text-color: #888888">(clique em uma das estrelas)</span>
+                    </td></tr>
+                    <tr><td style="font-size: 13px;">
+                        <table style="width:100%;text-align:center;margin-top:2rem;">
+                            <tbody><tr>
+                                <td>
+                                  <a t-attf-href="/rate/{{ access_token }}/1">
+                                    <img
+                                      alt="Insatisfeito"
+                                      src="/kami_sm/static/src/img/star_score_icon.png"
+                                      title="Insatisfeito"
+                                    />
+                                  </a>
+                                </td>
+                                <td>
+                                  <a t-attf-href="/rate/{{ access_token }}/2">
+                                    <img
+                                      alt="Pouco Satisfeito"
+                                      src="/kami_sm/static/src/img/star_score_icon.png"
+                                      title="Pouco Satisfeito"
+                                    />
+                                  </a>
+                                </td>
+                                <td>
+                                  <a t-attf-href="/rate/{{ access_token }}/3">
+                                    <img
+                                      alt="Satisfeito"
+                                      src="/kami_sm/static/src/img/star_score_icon.png"
+                                      title="Satisfeito"
+                                    />
+                                  </a>
+                                </td>
+                                <td>
+                                  <a t-attf-href="/rate/{{ access_token }}/4">
+                                    <img
+                                      alt="Muito Satisfeito"
+                                      src="/kami_sm/static/src/img/star_score_icon.png"
+                                      title="Muito Satisfeito"
+                                    />
+                                  </a>
+                                </td>
+                                <td>
+                                  <a t-attf-href="/rate/{{ access_token }}/5">
+                                    <img
+                                      alt="Extremamente Satisfeito"
+                                      src="/kami_sm/static/src/img/star_score_icon.png"
+                                      title="Extremamente Satisfeito"
+                                    />
+                                  </a>
+                                </td>                                
+                            </tr>
+                        </tbody></table>
+                    </td></tr>
+                </tbody></table>
+            </td></tr>
+            <tr>
+              <td style="font-size: 13px;" valign="top">
+                Agradecemos seu feedback. Isso nos ajuda a melhorar continuamente               
+            </td></tr>
+        </tbody>
+        </table>
+    </div>      
+    </field>
+  </record>
+</odoo>

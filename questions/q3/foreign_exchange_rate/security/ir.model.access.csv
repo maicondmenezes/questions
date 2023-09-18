@@ -1,0 +1,2 @@
+id,name,model_id/id,group_id/id,perm_read,perm_write,perm_create,perm_unlink
+access_foreign_exchange_rate_seller,access_foreign_exchange_rate_seller,model_foreign_exchange_rate_account_foreign_exchange_rate,foreign_exchange_rate.base,1,1,1,0

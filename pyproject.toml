@@ -1,0 +1,24 @@
+[tool.poetry]
+name = "questions"
+version = "0.1.0"
+description = ""
+authors = ["Maicon de Menezes <maicon@kamico.com.br>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+polars = "^0.19.2"
+matplotlib = "^3.8.0"
+pyglet = "^2.0.9"
+pyopengl = "^3.1.7"
+pyopengl-accelerate = "^3.1.7"
+psutil = "^5.9.5"
+pandas = "^2.1.0"
+
+
+[tool.poetry.group.dev.dependencies]
+ipykernel = "^6.25.2"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

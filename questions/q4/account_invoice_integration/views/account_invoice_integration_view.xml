@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="view_account_invoice_integration_form">
+            <field name="name">account.invoice.integration.form</field>
+            <field name="model">account.invoice.integration</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <button string="Send to External System" type="object" name="action_send_to_external_system"/>
+                    </header>
+                    <sheet>
+                        <group>
+                            <field name="invoice_id"/>
+                            <field name="external_system_id"/>
+                            <field name="status"/>
+                            <field name="response_message"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        
+        <menuitem id="menu_external_system_integration_settings"
+            name="External System Integration"
+            parent="base.menu_config"
+            sequence="20"
+            action="action_external_system_integration_settings"
+        />
+        
+        <record id="action_external_system_integration_settings" model="ir.actions.act_window">
+            <field name="name">External System Integration Settings</field>
+            <field name="res_model">external.system.integration</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_external_system_integration_form"/>
+            <field name="target">current</field>
+        </record>
+
+        <record id="view_external_system_integration_form" model="ir.ui.view">
+          <field name="name">external.system.integration.form</field>
+          <field name="model">external.system.integration</field>
+          <field name="arch" type="xml">
+              <form>
+                  <header>
+                      <button string="Save" type="object" name="write" class="oe_highlight"/>
+                  </header>
+                  <sheet>
+                      <group>
+                          <field name="periodic_call_delay"/>
+                      </group>
+                  </sheet>
+              </form>
+          </field>
+        </record>        
+        
+    </data>
+</odoo>
